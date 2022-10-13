@@ -1,8 +1,16 @@
-all:
+all: deps
 	cd LASlib && make
 	cd LASzip && make
 	cd src && make
 #	cd src_full && make
+
+deps:
+	git submodule update --init --recursive
+	git pull
+	cd emsdk && ./emsdk install latest
+	cd emsdk && ./emsdk activate latest
+	echo 'source "/emsdk/emsdk_env.sh"' >> .zshenv
+	echo 'source "/emsdk/emsdk_env.sh"' >> .bashrc
 
 clean:
 	cd LASlib && make clean

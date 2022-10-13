@@ -1,3 +1,8 @@
+CURRENT_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
+SHELL = /bin/sh
+
+export PATH := $(PATH):$(CURRENT_DIR)/emsdk:$(CURRENT_DIR)/emsdk/node/14.18.2_64bit/bin:$(CURRENT_DIR)/emsdk/upstream/emscripten
+
 all: deps
 	cd LASlib && make
 	cd LASzip && make
@@ -6,7 +11,6 @@ all: deps
 
 deps:
 	git submodule update --init --recursive
-	git pull
 	cd emsdk && ./emsdk install latest
 	cd emsdk && ./emsdk activate latest
 

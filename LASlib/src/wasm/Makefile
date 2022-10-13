@@ -14,7 +14,7 @@ OBJ_LAZ		= ../../../LASzip/src/laszip.o ../../../LASzip/src/lasreadpoint.o ../..
 
 all: liblas_wasm.a
 
-liblas_wasm.a: clean ${OBJ_LAZ} ${OBJ_LAS} 
+liblas_wasm.a: clobber ${OBJ_LAZ} ${OBJ_LAS} 
 	$(AR) $@ ${OBJ_LAZ} ${OBJ_LAS}
 	cp -p $@ ../../lib
 

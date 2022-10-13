@@ -9,13 +9,12 @@ LINKER  = g++
 
 #LIBS     = -L/usr/lib64
 #LIBS     = -L/usr/lib32
-#INCLUDE  = -I/usr/include
+INCLUDE  = -I/usr/include
 
 LASLIBS     = -L../LASlib/lib
 LASINCLUDE  = -I../LASzip/src -I../LASlib/inc 
 
 all: clobber laszip lasinfo lasprecision las2txt txt2las las2las lasdiff lasmerge lasindex
-	cd wasm && make
 
 laszip: laszip.o geoprojectionconverter.o 
 	${LINKER} ${BITS} ${COPTS} laszip.o geoprojectionconverter.o -llas -o $@ ${LIBS} ${LASLIBS} $(INCLUDE) $(LASINCLUDE)
@@ -62,10 +61,8 @@ lasindex: lasindex.o
 clean:
 	rm -rf *.o
 	rm -rf laszip lasinfo lasprecision las2txt txt2las las2las lasdiff lasmerge lasindex
-	cd wasm && make clean
 
 clobber:
 	rm -rf *.o
 	rm -rf laszip lasinfo lasprecision las2txt txt2las las2las lasdiff lasmerge lasindex
 	rm -rf *~
-	cd wasm && make clobber

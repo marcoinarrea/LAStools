@@ -9,8 +9,6 @@ deps:
 	git pull
 	cd emsdk && ./emsdk install latest
 	cd emsdk && ./emsdk activate latest
-	echo 'source "/emsdk/emsdk_env.sh"' >> .zshenv
-	echo 'source "/emsdk/emsdk_env.sh"' >> .bashrc
 
 clean:
 	cd LASlib && make clean
